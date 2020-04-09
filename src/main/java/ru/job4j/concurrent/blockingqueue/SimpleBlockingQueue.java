@@ -29,12 +29,23 @@ public class SimpleBlockingQueue<T> {
      */
     private int items = 0;
 
+    public int getItems() {
+        return items;
+    }
+
+    public void setItems(int items) {
+        this.items = items;
+    }
 
     /**
      * Queue as basic storage.
      */
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
+
+    public boolean isEmpty() {
+        return queue.isEmpty();
+    }
 
     public SimpleBlockingQueue(int capacity) {
         this.capacity = capacity;

@@ -12,6 +12,7 @@ import java.net.URLConnection;
  * Download data from Url.
  * If data is big progmramm pause. 1 sleep sedcond equals 1Kb.
  */
+@SuppressWarnings("BusyWait")
 public class FileDownload implements Runnable {
 //    String file = "https://raw.githubusercontent.com/peterarsentev/course_test/master/pom.xml";
 

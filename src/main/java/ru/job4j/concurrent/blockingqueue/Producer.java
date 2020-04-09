@@ -2,17 +2,19 @@ package ru.job4j.concurrent.blockingqueue;
 
 /**
  * @author madrabit
- * Producer is blocked if queue empty.
+ * Consumer is blocked if queue is full.
  */
 public class Producer<T> {
+
     final SimpleBlockingQueue<T> queue;
 
     public Producer(SimpleBlockingQueue<T> queue) {
         this.queue = queue;
     }
 
-    public void poll() {
-        Thread t = new Thread(() -> System.out.println(queue.poll()));
+    public void offer(final T value) {
+        Thread t = new Thread(() ->
+                queue.offer(value));
         t.start();
         try {
             t.join();

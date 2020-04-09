@@ -1,9 +1,12 @@
 package ru.job4j.concurrent;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.concurrent.blockingqueue.Consumer;
 import ru.job4j.concurrent.blockingqueue.Producer;
+import ru.job4j.concurrent.blockingqueue.Consumer;
 import ru.job4j.concurrent.blockingqueue.SimpleBlockingQueue;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 /**
  * @author madrabit
@@ -11,38 +14,22 @@ import ru.job4j.concurrent.blockingqueue.SimpleBlockingQueue;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SimpleBlockingQueueTest {
     @Test
-    public void testConsumer() {
+    public void whenOffer4Poll3ThenExpectedSize3() {
         SimpleBlockingQueue blockingQueue = new SimpleBlockingQueue(4);
 
-        @SuppressWarnings("rawtypes") Consumer consumer = new Consumer(blockingQueue);
-        Producer producer = new Producer(blockingQueue);
-
-        consumer.offer(1);
-        consumer.offer(2);
-        consumer.offer(3);
-        consumer.offer(4);
-
-        producer.poll();
-        producer.poll();
-        producer.poll();
-    }
-
-    @Test
-    public void testProducer() {
-        SimpleBlockingQueue blockingQueue = new SimpleBlockingQueue(4);
-
+        @SuppressWarnings("rawtypes") Producer producer = new Producer(blockingQueue);
         Consumer consumer = new Consumer(blockingQueue);
-        Producer producer = new Producer(blockingQueue);
 
+        producer.offer(1);
+        producer.offer(2);
+        producer.offer(3);
+        producer.offer(4);
 
-        consumer.offer(1);
-        consumer.offer(2);
-        consumer.offer(3);
+        consumer.poll();
+        consumer.poll();
+        consumer.poll();
 
+        assertThat(consumer.getStorage().size(), is(3));
 
-        producer.poll();
-        producer.poll();
-        producer.poll();
-        producer.poll();
     }
 }
