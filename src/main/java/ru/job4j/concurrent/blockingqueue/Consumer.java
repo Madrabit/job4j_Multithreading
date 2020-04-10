@@ -1,6 +1,6 @@
 package ru.job4j.concurrent.blockingqueue;
 
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -10,7 +10,7 @@ import java.util.Queue;
 public class Consumer<T> {
     final SimpleBlockingQueue<T> queue;
 
-    private final Queue<T> storage = new ArrayDeque<>();
+    private final Queue<T> storage = new LinkedList<>();
 
     public Consumer(SimpleBlockingQueue<T> queue) {
         this.queue = queue;
@@ -21,7 +21,14 @@ public class Consumer<T> {
     }
 
     public void poll() {
-        Thread t = new Thread(() -> storage.offer(queue.poll()));
+        Thread t = new Thread(() -> {
+            try {
+                storage.offer(queue.poll());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Thread.currentThread().interrupt();
+            }
+        });
         t.start();
         try {
             t.join();
