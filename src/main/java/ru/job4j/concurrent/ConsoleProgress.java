@@ -1,5 +1,7 @@
 package ru.job4j.concurrent;
 
+import net.jcip.annotations.ThreadSafe;
+
 /**
  * @author madrabit
  * Console Preloader.
@@ -20,7 +22,7 @@ public class ConsoleProgress implements Runnable {
                 Thread.sleep(500);
                 System.out.print("\r load: " + "/");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }
