@@ -17,7 +17,7 @@ public class Wget {
                         }
                         System.out.println(System.lineSeparator() + "Loaded.");
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                 }
         );
