@@ -7,7 +7,6 @@ package ru.job4j.concurrent;
 public final class Cache {
     private static Cache cache;
 
-    @SuppressWarnings("unused")
     private static synchronized Cache instOf() {
         if (cache == null) {
             cache = new Cache();
