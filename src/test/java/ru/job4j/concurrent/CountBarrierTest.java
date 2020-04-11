@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author madrabit
  */
 public class CountBarrierTest {
+    @SuppressWarnings("unused")
     @Test
     public void test() throws InterruptedException {
         boolean result = false;
