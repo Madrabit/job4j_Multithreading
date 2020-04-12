@@ -1,19 +1,20 @@
 package ru.job4j.concurrent;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import ru.job4j.concurrent.barrier.CountBarrier;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author madrabit
  */
 public class CountBarrierTest {
+
     @SuppressWarnings("unused")
     @Test
     public void test() throws InterruptedException {
         boolean result = false;
-        CountBarrier barrier = new CountBarrier(100);
+        CountBarrier barrier = new CountBarrier(50);
         Thread master = new Thread(
                 () -> {
                     System.out.println(Thread.currentThread().getName() + " started");
@@ -28,11 +29,12 @@ public class CountBarrierTest {
                 },
                 "Slave"
         );
-        master.start();
-        slave.start();
-        master.join();
-        
-        assertEquals(Thread.State.WAITING, slave.getState());
 
+        slave.start();
+        master.start();
+        Thread.State state = slave.getState();
+        master.join();
+
+        assertEquals(Thread.State.WAITING, state);
     }
 }
