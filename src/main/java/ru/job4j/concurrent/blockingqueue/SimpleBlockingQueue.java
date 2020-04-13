@@ -25,19 +25,6 @@ public class SimpleBlockingQueue<T> {
     private final int capacity;
 
     /**
-     * Items inside queue.
-     */
-    private int items = 0;
-
-    public int getItems() {
-        return items;
-    }
-
-    public void setItems(int items) {
-        this.items = items;
-    }
-
-    /**
      * Queue as basic storage.
      */
     @GuardedBy("this")
@@ -53,14 +40,13 @@ public class SimpleBlockingQueue<T> {
 
     public void offer(T value) {
         synchronized (monitor) {
-            while (capacity < items) {
+            while (capacity <= queue.size()) {
                 try {
                     monitor.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            items++;
             queue.offer(value);
             monitor.notifyAll();
         }
@@ -75,10 +61,8 @@ public class SimpleBlockingQueue<T> {
                     e.printStackTrace();
                 }
             }
-            items--;
             monitor.notifyAll();
             return queue.poll();
-
         }
     }
 }
