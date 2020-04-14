@@ -15,14 +15,14 @@ import static org.hamcrest.core.Is.is;
 /**
  * @author madrabit
  */
-@SuppressWarnings({"unchecked", "rawtypes"})
+
 public class SimpleBlockingQueueTest {
     @Test
     public void whenOffer4Poll3ThenExpectedSize3() {
-        SimpleBlockingQueue blockingQueue = new SimpleBlockingQueue(4);
+        SimpleBlockingQueue<Integer> blockingQueue = new SimpleBlockingQueue<>(4);
 
-        @SuppressWarnings("rawtypes") Producer producer = new Producer(blockingQueue);
-        Consumer consumer = new Consumer(blockingQueue);
+        Producer<Integer> producer = new Producer<>(blockingQueue);
+        Consumer<Integer> consumer = new Consumer<>(blockingQueue);
 
         producer.offer(1);
         producer.offer(2);
