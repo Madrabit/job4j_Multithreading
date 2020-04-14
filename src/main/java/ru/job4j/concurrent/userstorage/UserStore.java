@@ -1,6 +1,7 @@
 package ru.job4j.concurrent.userstorage;
 
-import javax.annotation.concurrent.ThreadSafe;
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -41,13 +42,5 @@ public class UserStore {
         from.setAmount(from.getAmount() - amount);
         User to = storage.get(toId);
         to.setAmount(to.getAmount() + amount);
-    }
-
-    public synchronized Map<Integer, User> getStorage() {
-        return storage;
-    }
-
-    public synchronized void setStorage(Map<Integer, User> storage) {
-        this.storage = storage;
     }
 }

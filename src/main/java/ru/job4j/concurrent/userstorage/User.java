@@ -1,6 +1,6 @@
 package ru.job4j.concurrent.userstorage;
 
-import javax.annotation.concurrent.ThreadSafe;
+import net.jcip.annotations.ThreadSafe;
 
 /**
  * @author madrabit
