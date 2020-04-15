@@ -1,7 +1,8 @@
 package ru.job4j.concurrent.locklist;
 
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
+
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.Iterator;
 
 /**
@@ -15,7 +16,6 @@ public class SingleLockList<T> implements Iterable<T> {
     /**
      * Dynamic array for all threads.
      */
-    @GuardedBy("this")
     private final DynamicArray<T> list = new DynamicArray<>();
 
     public synchronized void add(T value) {
@@ -32,7 +32,6 @@ public class SingleLockList<T> implements Iterable<T> {
         return newList;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public synchronized Iterator<T> iterator() {
         return copy(this.list).iterator();
