@@ -74,8 +74,9 @@ public class CASQueue<E> {
      * Get element by index.
      */
     public E get(int index) {
-        CASQueue.Node<E> result = head.get();
-        for (int i = 0; i < index; i++) {
+        CASQueue.Node<E> result = null;
+        for (int i = -1; i < index; i++) {
+            result = head.get();
             head.compareAndSet(result, result.prev);
         }
         return result.data;
