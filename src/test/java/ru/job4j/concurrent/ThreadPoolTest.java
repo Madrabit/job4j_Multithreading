@@ -17,8 +17,7 @@ public class ThreadPoolTest {
     public void sameTestWithFinalArray() throws InterruptedException {
         int size = Runtime.getRuntime().availableProcessors();
         final int[] count = {0};
-        CountDownLatch countDownLatch = new CountDownLatch(size);
-        ThreadPool threadPool = new ThreadPool(size, countDownLatch);
+        ThreadPool threadPool = new ThreadPool(size);
         threadPool.work(() -> count[0]++);
         threadPool.work(() -> count[0]++);
         threadPool.work(() -> count[0]++);

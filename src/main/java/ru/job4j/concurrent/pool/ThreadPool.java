@@ -16,7 +16,7 @@ public class ThreadPool {
     /**
      * Counter for waiting all Threads are finished.
      */
-    final CountDownLatch countDownLatch;
+    private final CountDownLatch countDownLatch;
 
     /**
      * Work Threads list.
@@ -27,10 +27,10 @@ public class ThreadPool {
      */
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>(10);
 
-    public ThreadPool(int size, CountDownLatch latch) {
-        countDownLatch = latch;
+    public ThreadPool(int size) {
+        countDownLatch = new CountDownLatch(size);
         for (int i = 0; i < size; i++) {
-            threads.add(new WorkThread(tasks, latch));
+            threads.add(new WorkThread(tasks, countDownLatch));
         }
         for (Thread thread : threads) {
             thread.start();
