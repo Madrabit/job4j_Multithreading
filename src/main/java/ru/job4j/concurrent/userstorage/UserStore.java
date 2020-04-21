@@ -16,7 +16,7 @@ public class UserStore {
     /**
      * Users list.
      */
-    Map<Integer, User> storage = new ConcurrentHashMap<>();
+    private Map<Integer, User> storage = new ConcurrentHashMap<>();
 
     public synchronized void add(User user) {
         storage.put(user.getId(), user);
