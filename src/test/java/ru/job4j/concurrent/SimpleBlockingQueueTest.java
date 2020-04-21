@@ -1,6 +1,6 @@
 package ru.job4j.concurrent;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import ru.job4j.concurrent.blockingqueue.Producer;
 import ru.job4j.concurrent.blockingqueue.Consumer;
 import ru.job4j.concurrent.blockingqueue.SimpleBlockingQueue;

@@ -34,8 +34,14 @@ public class CountBarrier {
      */
     public void count() {
         synchronized (monitor) {
-            while (total != count) {
+            while (count != total) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 count++;
+                System.out.println(count);
                 monitor.notifyAll();
             }
         }
@@ -47,7 +53,7 @@ public class CountBarrier {
      */
     public void await() {
         synchronized (monitor) {
-            while (count >= total) {
+            while (count != total) {
                 try {
                     monitor.wait();
                 } catch (InterruptedException e) {
