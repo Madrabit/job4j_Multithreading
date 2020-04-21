@@ -11,7 +11,7 @@ public class NonBlockingCache {
     /**
      * Storage.
      */
-    private ConcurrentHashMap<Integer, Base> map = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Integer, Base> map = new ConcurrentHashMap<>();
 
     public ConcurrentHashMap<Integer, Base> getMap() {
         return map;
