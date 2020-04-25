@@ -50,9 +50,7 @@ public class ThreadPool {
      * Interrupt all threads.
      */
     public void shutdown() throws InterruptedException {
-        while (countDownLatch.getCount() != 0) {
-            countDownLatch.await();
-        }
+        countDownLatch.await();
         for (WorkThread thread : threads) {
             thread.stopThread();
         }
