@@ -52,7 +52,7 @@ public class EmailNotification {
      * @param email   @mail.
      */
     public void send(String subject, String body, String email) {
-
+        //
     }
 
 }

@@ -1,6 +1,8 @@
 package ru.job4j.concurrent.atomic;
 
 import net.jcip.annotations.ThreadSafe;
+
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -79,7 +81,7 @@ public class CASQueue<E> {
             result = head.get();
             head.compareAndSet(result, result.prev);
         }
-        return result.data;
+        return Objects.requireNonNull(result).data;
     }
 
     /**

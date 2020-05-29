@@ -3,8 +3,6 @@ package ru.job4j.concurrent;
 import org.junit.Test;
 import ru.job4j.concurrent.pool.ThreadPool;
 
-import java.util.concurrent.CountDownLatch;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 

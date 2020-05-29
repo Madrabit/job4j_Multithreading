@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
  * @author madrabit
  * Thread for pool.
  */
-public class WorkThread<T> extends Thread {
+public class WorkThread<T, E> extends Thread {
 
     /**
      * For count down Latch.

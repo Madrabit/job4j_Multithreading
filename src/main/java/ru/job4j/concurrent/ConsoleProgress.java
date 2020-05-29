@@ -1,7 +1,5 @@
 package ru.job4j.concurrent;
 
-import net.jcip.annotations.ThreadSafe;
-
 /**
  * @author madrabit
  * Console Preloader.

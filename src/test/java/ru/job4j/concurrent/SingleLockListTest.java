@@ -38,7 +38,7 @@ public class SingleLockListTest {
         list.add(1);
         list.add(2);
         list.add(3);
-        Iterator iterator = list.iterator();
+        Iterator<Integer> iterator = list.iterator();
         assertTrue(iterator.hasNext());
         assertThat(iterator.next(), is(1));
         assertTrue(iterator.hasNext());

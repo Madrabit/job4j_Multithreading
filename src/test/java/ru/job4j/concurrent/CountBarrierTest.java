@@ -3,8 +3,6 @@ package ru.job4j.concurrent;
 import org.junit.jupiter.api.Test;
 import ru.job4j.concurrent.barrier.CountBarrier;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**

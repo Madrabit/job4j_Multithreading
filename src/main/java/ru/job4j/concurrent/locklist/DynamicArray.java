@@ -17,7 +17,7 @@ public class DynamicArray<T> implements Iterable<T> {
     private int position = 0;
     private int modCount = 0;
     @SuppressWarnings("unused")
-    private int capacity = 8;
+    private final int capacity = 8;
 
     public DynamicArray() {
         array = (T[]) new Object[size];
